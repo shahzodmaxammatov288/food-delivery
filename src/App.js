@@ -50,7 +50,7 @@ function App() {
       <div className="bottomMenu">
         <ul id="menu">
           {/* prettier-ignory */}
-          <MenuContainer link={"#"} icon={<HomeRounded />} />
+          <MenuContainer link={"#"} icon={<HomeRounded />} isHome />
           {/* prettier-ignory */}
           <MenuContainer link={"#"} icon={<Chat />} />
           {/* prettier-ignory */}
