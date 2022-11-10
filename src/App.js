@@ -8,6 +8,7 @@ import {
 } from "@mui/icons-material";
 import { useEffect } from "react";
 import "./App.css";
+import BannerName from "./Components/BannerName";
 import Header from "./Components/Header";
 import MenuContainer from "./Components/MenuContainer";
 
@@ -31,7 +32,17 @@ function App() {
       {/* Main Container */}
 
       <main>
-        <div className="mainContainer"></div>
+        <div className="mainContainer">
+          {/* Banner */}
+          <div className="banner">
+            <BannerName name={"Shakhzod"} discount={"20"} link={"#"} />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fdelivery.png?alt=media&token=69b9823d-96df-452a-bd4e-14d27a4cc337"
+              alt=""
+              className="deliveryPic"
+            />
+          </div>
+        </div>
         <div className="rightMenu"></div>
       </main>
 
