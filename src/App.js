@@ -10,7 +10,10 @@ import { useEffect } from "react";
 import "./App.css";
 import BannerName from "./Components/BannerName";
 import Header from "./Components/Header";
+import MenuCard from "./Components/MenuCard";
 import MenuContainer from "./Components/MenuContainer";
+import SubMenuContainer from "./Components/SubMenuContainer";
+import { MenuItems, Items } from "./Components/Data";
 
 function App() {
   useEffect(() => {
@@ -22,6 +25,19 @@ function App() {
     }
 
     menuLi.forEach((n) => n.addEventListener("click", setMenuActive));
+
+    //! MenuCard Active Toggle
+
+    const menuCards = document
+      .querySelector(".rowContainer")
+      .querySelectorAll(".rowMenuCard");
+
+    function setMenuCardActive() {
+      menuCards.forEach((n) => n.classList.remove("active"));
+      this.classList.add("active");
+    }
+
+    menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
   }, []);
 
   return (
@@ -41,6 +57,26 @@ function App() {
               alt=""
               className="deliveryPic"
             />
+          </div>
+
+          {/* dishContainer */}
+          <div className="dishContainer">
+            <div className="menuCard">
+              <SubMenuContainer name={"Menu Category"} />
+            </div>
+            <div className="rowContainer">
+              {MenuItems &&
+                MenuItems.map((data) => (
+                  <div key={data.id}>
+                    <MenuCard
+                      imgSrc={data.imgSrc}
+                      name={data.name}
+                      isActive={data.id === 1}
+                    />
+                  </div>
+                ))}
+            </div>
+            <div className="dishItemContainer"></div>
           </div>
         </div>
         <div className="rightMenu"></div>
