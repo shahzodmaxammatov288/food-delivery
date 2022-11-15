@@ -15,6 +15,7 @@ import MenuContainer from "./Components/MenuContainer";
 import SubMenuContainer from "./Components/SubMenuContainer";
 import { MenuItems, Items } from "./Components/Data";
 import ItemCard from "./Components/ItemCard";
+import DebitCard from "./Components/DebitCard";
 
 function App() {
   //!  Main Dish State
@@ -102,7 +103,13 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="rightMenu"></div>
+        <div className="rightMenu">
+          <div className="debitCardContainer">
+            <div className="debitCard">
+              <DebitCard />
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* Bottom Menu */}
