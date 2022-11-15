@@ -6,7 +6,7 @@ import {
   Settings,
   SummarizeRounded,
 } from "@mui/icons-material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import BannerName from "./Components/BannerName";
 import Header from "./Components/Header";
@@ -14,8 +14,15 @@ import MenuCard from "./Components/MenuCard";
 import MenuContainer from "./Components/MenuContainer";
 import SubMenuContainer from "./Components/SubMenuContainer";
 import { MenuItems, Items } from "./Components/Data";
+import ItemCard from "./Components/ItemCard";
 
 function App() {
+  //!  Main Dish State
+
+  const [isMainData, setMainData] = useState(
+    Items.filter((element) => element.itemId === "buger01")
+  );
+
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
 
@@ -38,7 +45,13 @@ function App() {
     }
 
     menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
-  }, []);
+  }, [isMainData]);
+
+  //! Set main dish items or filter
+
+  const setData = (itemId) => {
+    setMainData(Items.filter((element) => element.itemId === itemId));
+  };
 
   return (
     <div className="App">
@@ -66,17 +79,27 @@ function App() {
             </div>
             <div className="rowContainer">
               {MenuItems &&
-                MenuItems.map((data) => (
-                  <div key={data.id}>
-                    <MenuCard
-                      imgSrc={data.imgSrc}
-                      name={data.name}
-                      isActive={data.id === 1}
-                    />
+                MenuItems.map(({ id, itemId, imgSrc, name }) => (
+                  <div key={id} onClick={() => setData(itemId)}>
+                    <MenuCard imgSrc={imgSrc} name={name} isActive={id === 1} />
                   </div>
                 ))}
             </div>
-            <div className="dishItemContainer"></div>
+            <div className="dishItemContainer">
+              {isMainData &&
+                isMainData.map(
+                  ({ id, itemId, imgSrc, name, ratings, price }) => (
+                    <ItemCard
+                      key={id}
+                      itemId={id}
+                      imgSrc={imgSrc}
+                      name={name}
+                      ratings={ratings}
+                      price={price}
+                    />
+                  )
+                )}
+            </div>
           </div>
         </div>
         <div className="rightMenu"></div>
