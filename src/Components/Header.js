@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BarChart,
   SearchRounded,
@@ -6,6 +6,16 @@ import {
 } from "@mui/icons-material";
 
 function Header() {
+  //! useEffect
+
+  useEffect(() => {
+    const toggleMenu = document.querySelector(".toggleMenu");
+
+    toggleMenu.addEventListener("click", () => {
+      document.querySelector(".rightMenu").classList.toggle("active");
+    });
+  }, []);
+
   return (
     <header>
       <img
