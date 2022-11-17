@@ -17,6 +17,7 @@ import { MenuItems, Items } from "./Components/Data";
 import ItemCard from "./Components/ItemCard";
 import DebitCard from "./Components/DebitCard";
 import CartItem from "./Components/CartItem";
+import { useStateValue } from "./Components/StateProvider";
 
 function App() {
   //!  Main Dish State
@@ -24,6 +25,8 @@ function App() {
   const [isMainData, setMainData] = useState(
     Items.filter((element) => element.itemId === "buger01")
   );
+
+  const [{ cart }, dispatch] = useStateValue();
 
   useEffect(() => {
     const menuLi = document.querySelectorAll("#menu li");
@@ -47,7 +50,7 @@ function App() {
     }
 
     menuCards.forEach((n) => n.addEventListener("click", setMenuCardActive));
-  }, [isMainData]);
+  }, [isMainData, cart]);
 
   //! Set main dish items or filter
 
@@ -111,30 +114,42 @@ function App() {
             </div>
           </div>
 
-          <div className="cartCheckOutContainer">
-            <div className="cartContainer">
-              <SubMenuContainer name={"Carts Items"} />
-              <div className="cartItems">
-                <CartItem
-                  name={"Burger Bistro"}
-                  imgSrc={
-                    "https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fburger3.png?alt=media&token=0ebe8311-6378-411b-9b6e-d7a6d2a106a2"
-                  }
-                  qty={"4"}
-                  price={"7.95"}
-                />
+          {!cart ? (
+            <div className="addSomeItem">
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2FemptyCart.png?alt=media&token=50b733d4-cdd9-4025-bffe-8efa4066ca24"
+                alt=""
+                className="emptyCart"
+              />
+            </div>
+          ) : (
+            <div className="cartCheckOutContainer">
+              <div className="cartContainer">
+                <SubMenuContainer name={"Menu Category"} />
+                <div className="cartItems">
+                  {cart &&
+                    cart.map(({ id, name, imgSrc, price }) => (
+                      <CartItem
+                        key={id}
+                        id={id}
+                        name={name}
+                        imgSrc={imgSrc}
+                        price={price}
+                      />
+                    ))}
+                </div>
               </div>
-            </div>
 
-            <div className="totalSection">
-              <h3>Total</h3>
-              <p>
-                <span>$ </span>45.0
-              </p>
-            </div>
+              <div className="totalSection">
+                <h3>Total</h3>
+                <p>
+                  <span>$ </span>45.0
+                </p>
+              </div>
 
-            <button className="checkOut">CheckOut</button>
-          </div>
+              <button className="checkOut">CheckOut</button>
+            </div>
+          )}
         </div>
       </main>
 

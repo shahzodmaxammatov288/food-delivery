@@ -93,10 +93,9 @@ header {
   color: #faf9fb;
 }
 
-/* .shoppingCart .noCartItem {
+.shoppingCart .noCartItem {
   display: none;
 }
- */
 
 .profileContainer {
   display: flex;
@@ -262,6 +261,7 @@ main {
   width: 100%;
   height: auto;
   margin-top: 60px;
+  padding-bottom: 30px;
 }
 
 .mainContainer {
@@ -611,11 +611,11 @@ main {
 
 .rightMenu {
   width: 350px;
-  height: calc(100% - 60px);
+  height: calc(100% - 55px);
   background: #fff;
   position: fixed;
   right: 0;
-  top: 60px;
+  top: 55px;
   z-index: 105;
   display: flex;
   flex-direction: column;
@@ -623,7 +623,7 @@ main {
   padding: 20px 10px;
   transform: translateX(200%);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 20px rgb(0 0 0 / 10%);
 }
 
 .rightMenu.active {
@@ -772,14 +772,26 @@ main {
 
 .cartContainer {
   width: 100%;
-  min-height: 250px;
-  min-height: 280px;
+  flex: 1 1;
+  min-width: 320px;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+
+.cartContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.cartItems {
+  width: 100%;
+  min-height: 100px;
+  max-height: 140px;
   margin-top: 10px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-.cartContainer::-webkit-scrollbar {
+.cartItems::-webkit-scrollbar {
   display: none;
 }
 
@@ -899,4 +911,87 @@ main {
   letter-spacing: 2px;
 }
 
+.addSomeItem {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*! Ends Cart Item styles  */
+
+/*! Media  */
+
+@media screen and (min-width: 650px) {
+  .rowContainer {
+    justify-content: space-between;
+  }
+
+  .inputBox {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .toggleMenu {
+    display: none;
+  }
+
+  .profileContainer .userName {
+    display: block;
+  }
+
+  .leftMenu {
+    left: 21%;
+    width: 40%;
+  }
+
+  .mainContainer {
+    width: calc(100% - 350px);
+  }
+  .banner {
+    height: 160px;
+  }
+
+  .deliveryPic {
+    bottom: -13px;
+    width: 278px;
+  }
+
+  .bannerContent h3 {
+    font-size: 24px;
+  }
+
+  .bannerContent p {
+    font-size: 15px;
+    margin: 12px 0;
+    width: unset;
+  }
+
+  .bannerContent a {
+    font-size: 16px;
+  }
+
+  main {
+    display: flex;
+  }
+  
+  .mainContainer {
+    padding: 10px 30px;
+  }
+
+  .rightMenu {
+    position: fixed;
+    z-index: 1;
+    transform: translateX(0%);
+    top: unset;
+    padding: 20px 15px;
+  }
+
+  .itemCard {
+    width: 180px;
+    height: 200px;
+  }
+}
