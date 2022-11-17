@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 .App {
   width: 100vw;
   height: 100vh;
@@ -977,7 +981,7 @@ main {
   main {
     display: flex;
   }
-  
+
   .mainContainer {
     padding: 10px 30px;
   }
