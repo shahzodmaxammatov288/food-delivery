@@ -4,8 +4,11 @@ import {
   SearchRounded,
   ShoppingCartRounded,
 } from "@mui/icons-material";
+import { useStateValue } from "./StateProvider";
+import myImg from "../assets/images/001.jpg";
 
 function Header() {
+  const [{ cart }, dispatch] = useStateValue();
   //! useEffect
 
   useEffect(() => {
@@ -31,19 +34,16 @@ function Header() {
 
       <div className="shoppingCart">
         <ShoppingCartRounded className="cart" />
-        <div className="cart_content">
-          <p>2</p>
+        <div className={`${!cart ? "noCartItem" : "cart_content"}`}>
+          <p>{cart ? cart.length : ""}</p>
         </div>
       </div>
 
       <div className="profileContainer">
         <div className="imgBox">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/food-delivery-37c59.appspot.com/o/Images%2Fprofile.jpg?alt=media&token=36821495-39b9-4145-bde3-16c47c6ff937"
-            alt=""
-          />
+          <img src={myImg} alt="" />
         </div>
-        <h2 className="userName">Vetrivel Ravi</h2>
+        <h2 className="userName">Shakhzod</h2>
       </div>
 
       <div className="toggleMenu">
